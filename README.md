@@ -1,18 +1,14 @@
-# Terminator: A C++ to Python Modernizer
-
-**Terminator** is an experimental, rule-based transpiler designed to convert C++ source code into modern, idiomatic Python.  
-Inspired by tools like [Rector](https://github.com/rectorphp/rector) for PHP, Terminator relies on an AST-based semantic transformation approach instead of simple text replacement.
+Terminator: A C++ to Python Modernizer
+Terminator is an experimental, rule-based transpiler designed to convert C++ source code into modern, idiomatic Python.
+Inspired by tools like Rector for PHP, Terminator relies on an AST-based semantic transformation approach instead of simple text replacement.
 
 The primary goal of Terminator is to provide an extensible framework that allows developers to easily add new conversion rules to handle more C++ patterns and idioms over time.
 
----
-
-## 🏛️ Architecture & Core Concepts
-
-Terminator avoids fragile regular expressions and works on a structured representation of the code.  
+🏛️ Architecture & Core Concepts
+Terminator avoids fragile regular expressions and works on a structured representation of the code.
 The conversion process is a multi-stage pipeline ensuring accuracy and extensibility.
 
-### 🔷 Workflow:
+🔷 Workflow:
 C++ Source
 → [Clang Parser]
 → C++ AST
@@ -23,37 +19,32 @@ C++ Source
 → [Code Generator]
 → Python Source
 
-markdown
-Copy
-Edit
+Stages:
+Parse:
+The C++ code is parsed into a detailed Abstract Syntax Tree (AST) using libclang.
 
-### Stages:
-- **Parse:**  
-  The C++ code is parsed into a detailed Abstract Syntax Tree (AST) using `libclang`.
-- **Convert:**  
-  The complex `libclang` AST is converted into a simpler, custom Internal AST designed to be closer to Python concepts.
-- **Apply Rules:**  
-  A traverser walks the Internal AST and applies active Rules at each node. Each Rule is a small, independent logic unit that transforms matched patterns into their Python equivalents.
-- **Generate Code:**  
-  After all rules are applied, a Pretty Printer generates clean, formatted Python code from the modified AST.
+Convert:
+The complex libclang AST is converted into a simpler, custom Internal AST designed to be closer to Python concepts.
 
----
+Apply Rules:
+A traverser walks the Internal AST and applies active Rules at each node. Each Rule is a small, independent logic unit that transforms matched patterns into their Python equivalents.
 
-## 🚀 Getting Started
+Generate Code:
+After all rules are applied, a Pretty Printer generates clean, formatted Python code from the modified AST.
 
-### Prerequisites:
-- Python 3.8 or higher  
-- `libclang` library  
+🚀 Getting Started
+Prerequisites:
+Python 3.8 or higher
 
-Install `libclang` via pip:
-```bash
+libclang library
+
+Install libclang via pip:
+
 pip install libclang
+
 📋 Usage
 Run from the command line:
 
-bash
-Copy
-Edit
 # Convert a single file and print to console
 python terminator.py path/to/your/file.cpp
 
@@ -71,11 +62,10 @@ python terminator.py file.cpp --show-diff
 
 # Run with only specific rules active
 python terminator.py file.cpp --rules ForLoopToRangeRule
+
 📝 Example Conversion
 🎯 Sample C++ Input (sample.cpp):
-cpp
-Copy
-Edit
+
 #include <iostream>
 #include <string>
 
@@ -89,10 +79,9 @@ int main() {
     greet();
     return 0;
 }
+
 🔷 Generated Python Output:
-python
-Copy
-Edit
+
 def greet() -> None:
     for i in range(5):
         print("Hello, Terminator! Iteration: ", i)
@@ -105,18 +94,18 @@ def main() -> int:
 
 if __name__ == "__main__":
     main()
+
 🔧 How to Add a New Rule
 Terminator is designed for easy extensibility.
 
 Steps:
+
 Open rules.py which contains all rule definitions.
 
 Create a new class inheriting from the base Rule class.
 
 Example:
-python
-Copy
-Edit
+
 from terminator import ast, Rule
 
 class CStyleCastToPythonCast(Rule):
@@ -132,7 +121,9 @@ class CStyleCastToPythonCast(Rule):
             )
 
         return node
+
 Notes:
+
 The visit method is the core of the rule.
 
 Return the original node if it does not match.
