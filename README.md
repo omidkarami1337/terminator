@@ -9,28 +9,16 @@ Terminator avoids fragile regular expressions and works on a structured represen
 The conversion process is a multi-stage pipeline ensuring accuracy and extensibility.
 
 🔷 Workflow:
-C++ Source
-→ [Clang Parser]
-→ C++ AST
-→ [AST Converter]
-→ Internal AST
-→ [Rule Engine]
-→ Modified AST
-→ [Code Generator]
-→ Python Source
+C++ Source → [Clang Parser] → C++ AST → [AST Converter] → Internal AST → [Rule Engine] → Modified AST → [Code Generator] → Python Source
 
 Stages:
-Parse:
-The C++ code is parsed into a detailed Abstract Syntax Tree (AST) using libclang.
+Parse: The C++ code is parsed into a detailed Abstract Syntax Tree (AST) using libclang.
 
-Convert:
-The complex libclang AST is converted into a simpler, custom Internal AST designed to be closer to Python concepts.
+Convert: The complex libclang AST is converted into a simpler, custom Internal AST designed to be closer to Python concepts.
 
-Apply Rules:
-A traverser walks the Internal AST and applies active Rules at each node. Each Rule is a small, independent logic unit that transforms matched patterns into their Python equivalents.
+Apply Rules: A traverser walks the Internal AST and applies active Rules at each node. Each Rule is a small, independent logic unit that transforms matched patterns into their Python equivalents.
 
-Generate Code:
-After all rules are applied, a Pretty Printer generates clean, formatted Python code from the modified AST.
+Generate Code: After all rules are applied, a Pretty Printer generates clean, formatted Python code from the modified AST.
 
 🚀 Getting Started
 Prerequisites:
