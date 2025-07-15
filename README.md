@@ -194,7 +194,7 @@ Terminator is licensed under the [MIT License](LICENSE). See the `LICENSE` file 
 
 ## 📬 Contact
 
-For questions, suggestions, or bug reports, please open an issue on the [GitHub repository](https://github.com/yourusername/terminator) or contact the maintainer at [your.email@example.com](mailto:your.email@example.com).
+For questions, suggestions, or bug reports, please open an issue on the [GitHub repository](https://github.com/omidkarami1337/terminator) or contact the maintainer at [omidkaramibio@gmail.com](mailto:omidkaramibio@gmail.com).
 
 ---
 
