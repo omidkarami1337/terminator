@@ -37,7 +37,7 @@ C++ Source → [Clang Parser] → C++ AST → [AST Converter] → Internal AST �
 
 1. Clone the Terminator repository:
    ```bash
-   git clone https://github.com/yourusername/terminator.git
+   git clone https://github.com/omidkarami1337/terminator.git
    cd terminator
    ```
 
